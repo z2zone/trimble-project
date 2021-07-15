@@ -1,0 +1,14 @@
+.intro{
+    display: flex;
+    .intro-box, .pickup-box, .tracing-box{
+        padding: 2rem;
+        text-align: justify;
+        background: white;
+        margin: 1rem;
+        border-radius: 5px;
+        box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    }
+    .intro-title, .tracing-box h4, .pickup-box h4{
+        margin-bottom: 1rem;
+    }
+}
