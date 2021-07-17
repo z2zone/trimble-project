@@ -1,0 +1,16 @@
+.paper {
+    margin-top: 4rem;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    h1 {
+        margin: 1.5rem;
+    }
+}
+.login .login-button{
+    margin: 2rem 0;
+}
+input#username,input#password{
+    background: #fff;
+}

@@ -7,30 +7,32 @@ import DataUsageOutlinedIcon from '@material-ui/icons/DataUsageOutlined';
 import BackupOutlinedIcon from '@material-ui/icons/BackupOutlined';
 import DashboardOutlinedIcon from '@material-ui/icons/DashboardOutlined';
 import logo from '../../Assets/trimble-white.png';
+import { NavLink } from 'react-router-dom';
+import { connect } from 'react-redux';
+import GuestSideNav from './GuestSideNav';
+import AuthSideNav from './AuthSideNav';
 
-const SideNav = () => {
+const SideNav = (props) => {
     return(
-        <div className="side-nav">
-            <div className="side-nav-wrapper">
-                <img className="logo" src={logo} alt="" />
-                <h3 className="side-nav-title">Dashboard</h3>
-                <ul className="side-nav-list">
-                    <li className="side-nav-list-item active"><DashboardOutlinedIcon /> Home</li>
-                    <li className="side-nav-list-item"><AccountCircleOutlinedIcon /> Profile</li>
-                    <li className="side-nav-list-item"><SettingsOutlinedIcon /> Setting</li>
-                    <li className="side-nav-list-item"><HelpOutlineOutlinedIcon /> Help </li>
-                </ul>
-                <br />
-                <h3 className="side-nav-title">Data Analytics</h3>
-                <ul className="side-nav-list">
-                    <li className="side-nav-list-item"><TrendingUpOutlinedIcon /> Data Trends</li>
-                    <li className="side-nav-list-item"><DataUsageOutlinedIcon /> Data Usage</li>
-                    <li className="side-nav-list-item"><BackupOutlinedIcon /> Backup</li>
-                    <li className="side-nav-list-item"><HelpOutlineOutlinedIcon /> Help </li>
-                </ul>
-            </div>
+        <div>
+            {props.loggedIn ? (<AuthSideNav />) : (<GuestSideNav />)}
+            {props.children}
         </div>
     );
 }
 
-export default SideNav;
+const mapStateToProps = state => {
+    return {
+      loggedIn: state.auth.loggedIn
+    };
+  };
+  
+  const mapDispatchToProps = dispatch => {
+    return {
+      logout: () => dispatch({ type: "SET_LOGOUT" })
+    };
+  };
+  export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(SideNav);

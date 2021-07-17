@@ -4,26 +4,33 @@ import ModeCommentOutlinedIcon from '@material-ui/icons/ModeCommentOutlined';
 import NotificationsOutlinedIcon from '@material-ui/icons/NotificationsOutlined';
 import SearchOutlinedIcon from '@material-ui/icons/SearchOutlined';
 import AccountCircleOutlinedIcon from '@material-ui/icons/AccountCircleOutlined';
+import { NavLink} from 'react-router-dom';
+import GuestTopNav from './GuestTopNav';
+import AuthTopNav from './AuthTopNav';
+import { connect } from 'react-redux';
+import { removeUserSession } from '../../Utils/Common';
 
-const TopNav = () => {
+const TopNav = (props) => {
     return(
-        <nav className="top-nav">
-            <div className="top-nav-wrapper">
-                <span className="bread-crumb"><h1>Dashboard</h1></span>
-                <ul>
-                    <li className="serach-bar">
-                        <input type="text" id="search-bar" placeholder="Search..." /><SearchOutlinedIcon className="search-icon"/>
-                        <a href="#"></a>
-                    </li>
-                    <div class="top-nav-icons">                        
-                        <li><NotificationsOutlinedIcon/></li>
-                        <li className="top-nav-border"><ModeCommentOutlinedIcon /></li>
-                        <li className="log-in-status"><AccountCircleOutlinedIcon />&nbsp;&nbsp; Sign in<ArrowDropDownIcon /> </li>
-                    </div>
-                </ul>
-            </div>
-        </nav>
+        <div>
+            {props.loggedIn ? (<AuthTopNav />) : (<GuestTopNav />)}
+            {props.children}
+        </div>
     );
 }
 
-export default TopNav;
+const mapStateToProps = state => {
+    return {
+      loggedIn: state.auth.loggedIn
+    };
+  };
+  
+  const mapDispatchToProps = dispatch => {
+    return {
+      logout: () => dispatch({ type: "SET_LOGOUT" })
+    };
+  };
+  export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(TopNav);

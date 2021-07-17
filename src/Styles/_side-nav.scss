@@ -32,6 +32,9 @@
     .side-nav-list-item:hover{
         background-image: linear-gradient( to right, red, #f06d06 );
     }
+    .side-nav-list-item-text{
+        text-decoration: none;
+    }
     .side-nav-title{
         font-size: 0.85rem;
         margin-bottom: 1.5rem;

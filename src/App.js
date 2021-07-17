@@ -5,6 +5,11 @@ import SideNav from "./Components/Navigations/SideNav";
 import Homepage from "./Components/Homepage";
 import User from "./Components/Users"
 import { BrowserRouter as Router, Switch, Route} from "react-router-dom";
+import AuthenticatedRoute from "./Components/Routes/AuthenticatedRoute";
+import Login from "./Components/Login_Resister/Login";
+import GuestRoute from "./Components/Routes/GuestRoute";
+import Register from "./Components/Login_Resister/Register";
+import MultiStepRegister from "./Components/Login_Resister/MultiStepRegister";
 
 function App() {
 
@@ -22,6 +27,8 @@ function App() {
               <Route path="/users">
                 <User />
               </Route>
+              <GuestRoute path = "/login"> <Login /></GuestRoute>
+              <GuestRoute path = "/register"> <Register /></GuestRoute>
             </Switch>
           </div>
         </div>
