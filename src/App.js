@@ -10,6 +10,7 @@ import Login from "./Components/Login_Resister/Login";
 import GuestRoute from "./Components/Routes/GuestRoute";
 import Register from "./Components/Login_Resister/Register";
 import MultiStepRegister from "./Components/Login_Resister/MultiStepRegister";
+import Reports from "./Components/Reports/Reports";
 
 function App() {
 
@@ -29,6 +30,7 @@ function App() {
               </Route>
               <GuestRoute path = "/login"> <Login /></GuestRoute>
               <GuestRoute path = "/register"> <Register /></GuestRoute>
+              <AuthenticatedRoute path = "/reports"><Reports /></AuthenticatedRoute>
             </Switch>
           </div>
         </div>
