@@ -39,22 +39,11 @@ const Login = (props) => {
         })
     }
 
-      const theme = createTheme({
-        palette: {
-          primary: {
-            main:"#060024",
-          },
-          secondary: {
-            main: green[500],
-          },
-        },
-      });
-    
     return (
 
         <div className="login">
                 <Container component = "main" maxWidth = "xs">
-                    <ThemeProvider theme = {theme}>
+                    <ThemeProvider>
                     <div className="paper">
                             <Avatar className="avatar">
                              </Avatar>

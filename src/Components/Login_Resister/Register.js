@@ -31,51 +31,18 @@ function Copyright() {
   );
 }
 
-const useStyles = makeStyles((theme) => ({
-  paper: {
-    marginTop: theme.spacing(8),
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    boxShadow: "0px 3px 1px -2px  #7b7fda",
-  },
-  avatar: {
-    margin: theme.spacing(1),
-    backgroundColor: "#060024",
-  },
-  form: {
-    width: '100%', 
-    marginTop: theme.spacing(3),
-  },
-  submit: {
-    margin: theme.spacing(3, 0, 2),
-  },
-}));
-
 export default function Register() {
-  const classes = useStyles();
-  const theme = createTheme({
-    palette: {
-      primary: {
-        main:"#060024",
-      },
-      secondary: {
-        main: "#f06d06"
-      },
-    },
-  });
-
 
   return (
     <Container component="main" maxWidth="xs">
-        <ThemeProvider theme = {theme}>
-      <div className={classes.paper}>
-        <Avatar className={classes.avatar}>
+        <ThemeProvider >
+      <div className="register paper">
+        <Avatar>
         </Avatar>
         <Typography component="h1" variant="h5">
           Sign up
         </Typography>
-        <form className={classes.form} noValidate>
+        <form noValidate>
           <Grid container spacing={2}>
             <Grid item xs={12} sm={6}>
                 <Typography component="p" variant="p5">
@@ -162,9 +129,9 @@ export default function Register() {
           <Button
             type="submit"
             fullWidth
+            className="login-button"
             variant="contained"
             color="primary"
-            className={classes.submit}
           >
             Next
           </Button>
