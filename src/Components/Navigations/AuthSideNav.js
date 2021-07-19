@@ -27,7 +27,7 @@ const AuthSideNav = () => {
                 <h3 className="side-nav-title">Data Analytics</h3>
                 <ul className="side-nav-list">
                     <li className="side-nav-list-item"><TrendingUpOutlinedIcon /> Data Trends</li>
-                    <li className="side-nav-list-item"><DataUsageOutlinedIcon /> Data Usage</li>
+                    <li className="side-nav-list-item"><DataUsageOutlinedIcon /> <NavLink to = "/reports"> Reports </NavLink></li>
                     <li className="side-nav-list-item"><BackupOutlinedIcon /> Backup</li>
                     <li className="side-nav-list-item"><HelpOutlineOutlinedIcon /> Help </li>
                 </ul>
