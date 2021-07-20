@@ -1,3 +1,4 @@
+
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import { getToken } from '../../Utils/Common';
@@ -13,27 +14,26 @@ import Paper from '@material-ui/core/Paper';
 import {Container} from '@material-ui/core';
 
 
-const ReportsTable = (props) => {
-    const[reports, setReports] = useState([]);
-    useEffect(() => {
-
-        async function fetchData(){
-            const jwt = getToken();
-            let config = {
-                headers: {
-                    'Authorization' : `Bearer ${jwt} ` 
-                }
-            };
-            const request = await axios.get(
-                'http://localhost/tm/reports',
-                config
-            )
-            console.log(request);
-            setReports(request.data.reports);
-            return request;
-        }
-        fetchData();
-    }, []);
+const ReportsTable = () => {
+  const [reports, setReports] = useState([]);
+  useEffect(() => {
+    async function fetchData() {
+      const jwt = getToken();
+      let config = {
+        headers: {
+          Authorization: `Bearer ${jwt} `,
+        },
+      };
+      const request = await axios.get(
+        "http://localhost:2103/tm/reports",
+        config
+      );
+      console.log(request);
+      setReports(request.data.reports);
+      return request;
+    }
+    fetchData();
+  }, []);
 
     async function fetchById(id){
       const jwt = getToken();
@@ -75,6 +75,10 @@ const ReportsTable = (props) => {
           width: '100%',
         },
       });
+
+  function createData() {
+    return "Crystal Reports";
+  }
 
 
       const classes = useStyles();
@@ -126,6 +130,6 @@ const ReportsTable = (props) => {
   );
 }
     
+ 
 
-
-export default ReportsTable
+export default ReportsTable;

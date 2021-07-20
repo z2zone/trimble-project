@@ -1,12 +1,12 @@
-import React from 'react';
-import HomeInfo from './Contents/HomeInfo';
+import React from "react";
+import HomeInfo from "./Contents/HomeInfo";
 
 const Homepage = () => {
-    return(
-        <div className="homepage">
-            <HomeInfo/>
-        </div>
-    );
-}
+  return (
+    <div className="homepage">
+      <HomeInfo />
+    </div>
+  );
+};
 
 export default Homepage;
