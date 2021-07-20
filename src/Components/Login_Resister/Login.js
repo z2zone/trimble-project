@@ -15,9 +15,15 @@ import {
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Checkbox from "@material-ui/core/Checkbox";
 import { makeStyles } from "@material-ui/core/styles";
+<<<<<<< Updated upstream
 import Box from "@material-ui/core/Box";
 import { Breadcrumbs } from "@material-ui/core";
 import { NavLink } from "react-router-dom";
+=======
+import Box from '@material-ui/core/Box';
+import { Breadcrumbs } from '@material-ui/core';
+import {NavLink, useHistory} from "react-router-dom";
+>>>>>>> Stashed changes
 import styled from "styled-components";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import { connect } from "react-redux";
@@ -31,6 +37,7 @@ const Login = (props) => {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
 
+<<<<<<< Updated upstream
   const handleLogin = () => {
     setError(null);
     setLoading(true);
@@ -60,6 +67,89 @@ const Login = (props) => {
             <Typography component="h1" variant="h5">
               Log in
             </Typography>
+=======
+    let history = useHistory();
+
+    const handleLogin = () => {
+
+        setError(null); 
+        setLoading(true);
+        axios.post("http://localhost/tm/login/", {
+            username: username,
+            password: password
+        }).then(response => {
+            setLoading(false);
+            setUserSession(response.data.JWT, username);
+            console.log("reponse >>> ", response)
+            history.push("/");
+            
+        }).catch(error => {
+            setLoading(false);
+            console.log("error >>>", error)
+        })
+    }
+
+    const useStyles = makeStyles((theme) => ({
+        paper: {
+          marginTop: theme.spacing(8),
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          boxShadow: "0px 3px 1px -2px  #7b7fda"
+        },
+        avatar: {
+          margin: theme.spacing(1),
+          backgroundColor: "#060024",
+        },
+        form: {
+          width: '100%', // Fix IE 11 issue.
+          marginTop: theme.spacing(3),
+        },
+        submit: {
+          margin: theme.spacing(3, 0, 2),
+        },
+      }));
+      const classes = useStyles();
+
+      const theme = createTheme({
+        palette: {
+          primary: {
+            main:"#060024",
+                  },
+          secondary: {
+            main: green[500],
+          },
+        },
+      });
+    
+    return (
+
+        <div>
+                <Container component = "main" maxWidth = "xs">
+                    <ThemeProvider theme = {theme}>
+                    <div className={classes.paper}>
+                            <Avatar className={classes.avatar}>
+                             </Avatar>
+                    <Typography component="h1" variant="h5">
+                            Log in
+                    </Typography>
+                    
+                    <form className={classes.form} >
+                    <Grid container spacing={2}>
+                        <Grid item xs={12} >
+                        <Typography component="p" variant="p5">
+                            Username
+                         </Typography>
+                    <TextField
+                        variant="outlined"
+                        required
+                        fullWidth
+                        id="username"
+                        size = "small"
+                        autoFocus
+                        value={username} onChange={e => setUsername(e.target.value)}
+                    />
+>>>>>>> Stashed changes
 
             <form>
               <Grid container spacing={2}>
@@ -95,10 +185,10 @@ const Login = (props) => {
                   />
                   <Button
                     type="submit"
-                    className="login-button"
                     fullWidth
                     variant="contained"
                     color="primary"
+<<<<<<< Updated upstream
                     onClick={handleLogin}
                   >
                     Login
@@ -110,6 +200,18 @@ const Login = (props) => {
                       </NavL>
                     </Grid>
                   </Grid>
+=======
+                    className={classes.submit}
+                    onClick= {handleLogin}
+                    >
+                        Login
+                    </Button>
+                <Grid container justifyContent="flex-end">
+                <Grid item >
+                    <NavL to="/register" variant="body2">
+                        Don't have an account? Sign up!
+                    </NavL>
+>>>>>>> Stashed changes
                 </Grid>
               </Grid>
             </form>

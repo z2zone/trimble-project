@@ -9,8 +9,8 @@ import AuthenticatedRoute from "./Components/Routes/AuthenticatedRoute";
 import Login from "./Components/Login_Resister/Login";
 import GuestRoute from "./Components/Routes/GuestRoute";
 import Register from "./Components/Login_Resister/Register";
+import Reports from "./Components/Reports/Reports"
 import MultiStepRegister from "./Components/Login_Resister/MultiStepRegister";
-import Reports from "./Components/Reports/Reports";
 
 function App() {
   return (
@@ -19,6 +19,7 @@ function App() {
         <TopNav />
         <div className="container">
           <SideNav />
+<<<<<<< Updated upstream
           <Switch>
             <Route exact path="/">
               <Homepage />
@@ -38,6 +39,21 @@ function App() {
               <Reports />
             </AuthenticatedRoute>
           </Switch>
+=======
+          <div className="content">
+            <Switch>
+              <Route exact path="/">
+                <Homepage />
+              </Route>
+              <Route path="/users">
+                <User />
+              </Route>
+              <Route path = "/login"> <Login /></Route>
+              <Route path = "/register"> <Register /></Route>
+              <Route path = "/reports"><Reports /></Route>
+            </Switch>
+          </div>
+>>>>>>> Stashed changes
         </div>
       </div>
     </Router>

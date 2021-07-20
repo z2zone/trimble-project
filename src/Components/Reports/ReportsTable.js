@@ -12,6 +12,7 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import {Container} from '@material-ui/core';
+import Pdf from "../../Assets/sample.pdf"
 
 
 const ReportsTable = () => {
@@ -107,9 +108,10 @@ const ReportsTable = () => {
         <TableBody>
           {rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
             return (
-              <StyledTableRow key = {row.reportId} onClick = {() =>fetchById(row.reportId).then(result => setPdfData(result['reportData'])).catch(error => console.log("error >>>", error))}> 
+              <StyledTableRow key = {row.reportId} onClick = {() =>fetchById(row.reportId).then(result => setPdfData(result['reportData'])).catch(error => setPdfData(Pdf))}> 
                 <StyledTableCell component = "th" scope = "row">
-                {row.reportDescription}
+                {/*row.reportDescription*/}
+                <a href = {pdfData} target = "_blank">{row.reportDescription}</a>
               </StyledTableCell>
               </StyledTableRow>
             );
