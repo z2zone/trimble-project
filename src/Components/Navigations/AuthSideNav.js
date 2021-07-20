@@ -7,15 +7,16 @@ import DataUsageOutlinedIcon from '@material-ui/icons/DataUsageOutlined';
 import BackupOutlinedIcon from '@material-ui/icons/BackupOutlined';
 import DashboardOutlinedIcon from '@material-ui/icons/DashboardOutlined';
 import logo from '../../Assets/trimble-white.png';
-import { NavLink } from 'react-router-dom';
+import { NavLink as Link } from 'react-router-dom';
+import styled from "styled-components"
 
 const AuthSideNav = () => {
     return (
         <div className="side-nav">
             <div className="side-nav-wrapper">
-                <NavLink to = "/">
+                <Link to = "/">
                 <img className="logo" src={logo} alt="" />
-                </NavLink>
+                </Link>
                 <h3 className="side-nav-title">Dashboard</h3>
                 <ul className="side-nav-list">
                     <li className="side-nav-list-item active"><DashboardOutlinedIcon /> Home</li>
@@ -27,7 +28,7 @@ const AuthSideNav = () => {
                 <h3 className="side-nav-title">Data Analytics</h3>
                 <ul className="side-nav-list">
                     <li className="side-nav-list-item"><TrendingUpOutlinedIcon /> Data Trends</li>
-                    <li className="side-nav-list-item"><DataUsageOutlinedIcon /> <NavLink to = "/reports"> Reports </NavLink></li>
+                    <li className="side-nav-list-item"><DataUsageOutlinedIcon /> <StyledLink to = "/reports"> Reports </StyledLink></li>
                     <li className="side-nav-list-item"><BackupOutlinedIcon /> Backup</li>
                     <li className="side-nav-list-item"><HelpOutlineOutlinedIcon /> Help </li>
                 </ul>
@@ -35,5 +36,11 @@ const AuthSideNav = () => {
         </div>
     )
 }
+
+const StyledLink = styled(Link)`
+    text-decoration: none;
+    color: #fff;
+
+`;
 
 export default AuthSideNav
