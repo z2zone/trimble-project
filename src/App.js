@@ -7,6 +7,7 @@ import User from "./Components/Users"
 import { BrowserRouter as Router, Switch, Route} from "react-router-dom";
 import AuthenticatedRoute from "./Components/Routes/AuthenticatedRoute";
 import Login from "./Components/Login_Resister/Login";
+import Charts from "./Components/Contents/Charts";
 import GuestRoute from "./Components/Routes/GuestRoute";
 import Register from "./Components/Login_Resister/Register";
 import Reports from "./Components/Reports/Reports"
@@ -29,6 +30,7 @@ function App() {
                 <User />
               </Route>
               <Route path = "/login"> <Login /></Route>
+              <Route path = "/charts"> <Charts /></Route>
               <Route path = "/register"> <Register /></Route>
               <Route path = "/reports"><Reports /></Route>
             </Switch>

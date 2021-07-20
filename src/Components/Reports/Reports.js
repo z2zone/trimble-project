@@ -3,7 +3,7 @@ import ReportsTable from "./ReportsTable";
 
 const Reports = () => {
   return (
-    <div>
+    <div class="report">
       <ReportsTable />
     </div>
   );
