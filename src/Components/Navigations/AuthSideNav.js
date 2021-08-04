@@ -6,6 +6,7 @@ import TrendingUpOutlinedIcon from '@material-ui/icons/TrendingUpOutlined';
 import DataUsageOutlinedIcon from '@material-ui/icons/DataUsageOutlined';
 import BackupOutlinedIcon from '@material-ui/icons/BackupOutlined';
 import DashboardOutlinedIcon from '@material-ui/icons/DashboardOutlined';
+import FindReplaceOutlinedIcon from '@material-ui/icons/FindReplaceOutlined';
 import logo from '../../Assets/trimble-white.png';
 import { NavLink as Link } from 'react-router-dom';
 import styled from "styled-components"
@@ -25,10 +26,11 @@ const AuthSideNav = () => {
                     <li className="side-nav-list-item"><HelpOutlineOutlinedIcon /> Help </li>
                 </ul>
                 <br />
-                <h3 className="side-nav-title">Data Analytics</h3>
+                <h3 className="side-nav-title">Analytics</h3>
                 <ul className="side-nav-list">
                     <li className="side-nav-list-item"><TrendingUpOutlinedIcon /> <StyledLink to = "/charts"> Data Trends </StyledLink> </li>
                     <li className="side-nav-list-item"><DataUsageOutlinedIcon /> <StyledLink to = "/reports"> Reports </StyledLink></li>
+                    <li className="side-nav-list-item"><FindReplaceOutlinedIcon /> <StyledLink to = "/rate"> Rate Quote </StyledLink></li>
                     <li className="side-nav-list-item"><BackupOutlinedIcon /> Backup</li>
                     <li className="side-nav-list-item"><HelpOutlineOutlinedIcon /> Help </li>
                 </ul>
