@@ -12,6 +12,8 @@ import GuestRoute from "./Components/Routes/GuestRoute";
 import Register from "./Components/Login_Resister/Register";
 import Reports from "./Components/Reports/Reports"
 import MultiStepRegister from "./Components/Login_Resister/MultiStepRegister";
+import Trace from "./Components/Trace/Trace";
+import ExternalTrace from "./Components/Trace/ExternalTrace";
 
 function App() {
 
@@ -29,6 +31,8 @@ function App() {
               <Route path = "/register"> <Register /></Route>
               <Route path = "/reports"><Reports /></Route>
               <Route path = "/rate"><Rate /></Route>
+              <Route path = "/trace"><Trace /></Route>
+              <Route path="/externaltrace"><ExternalTrace /></Route>
             </Switch>
           </div>
         </div>

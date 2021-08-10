@@ -7,6 +7,7 @@ import DataUsageOutlinedIcon from '@material-ui/icons/DataUsageOutlined';
 import BackupOutlinedIcon from '@material-ui/icons/BackupOutlined';
 import DashboardOutlinedIcon from '@material-ui/icons/DashboardOutlined';
 import FindReplaceOutlinedIcon from '@material-ui/icons/FindReplaceOutlined';
+import LinearScaleIcon from "@material-ui/icons/LinearScale";
 import logo from '../../Assets/trimble-white.png';
 import { NavLink as Link } from 'react-router-dom';
 import styled from "styled-components"
@@ -14,7 +15,7 @@ import styled from "styled-components"
 const AuthSideNav = () => {
     return (
         <div className="side-nav">
-            <div className="side-nav-wrapper">
+            <div className="side-nav-wrapper"> 
                 <Link to = "/">
                 <img className="logo" src={logo} alt="" />
                 </Link>
@@ -33,6 +34,7 @@ const AuthSideNav = () => {
                     <li className="side-nav-list-item"><FindReplaceOutlinedIcon /> <StyledLink to = "/rate"> Rate Quote </StyledLink></li>
                     <li className="side-nav-list-item"><BackupOutlinedIcon /> Backup</li>
                     <li className="side-nav-list-item"><HelpOutlineOutlinedIcon /> Help </li>
+                    <StyledLink to= "/trace"> <li className="side-nav-list-item"><LinearScaleIcon />  Trace </li></StyledLink>
                 </ul>
             </div>
         </div>
