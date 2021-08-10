@@ -3,10 +3,11 @@ import "./Styles/app.scss"
 import TopNav from "./Components/Navigations/TopNav";
 import SideNav from "./Components/Navigations/SideNav";
 import Homepage from "./Components/Homepage";
-import User from "./Components/Users"
+import Rate from "./Components/Rate/Rate";
 import { BrowserRouter as Router, Switch, Route} from "react-router-dom";
 import AuthenticatedRoute from "./Components/Routes/AuthenticatedRoute";
 import Login from "./Components/Login_Resister/Login";
+import Charts from "./Components/Contents/Charts";
 import GuestRoute from "./Components/Routes/GuestRoute";
 import Register from "./Components/Login_Resister/Register";
 import Reports from "./Components/Reports/Reports"
@@ -22,15 +23,12 @@ function App() {
           <SideNav />
           <div className="content">
             <Switch>
-              <Route exact path="/">
-                <Homepage />
-              </Route>
-              <Route path="/users">
-                <User />
-              </Route>
+              <Route exact path="/"><Homepage /></Route>
               <Route path = "/login"> <Login /></Route>
+              <Route path = "/charts"> <Charts /></Route>
               <Route path = "/register"> <Register /></Route>
               <Route path = "/reports"><Reports /></Route>
+              <Route path = "/rate"><Rate /></Route>
             </Switch>
           </div>
         </div>
