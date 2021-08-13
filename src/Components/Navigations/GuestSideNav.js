@@ -6,6 +6,7 @@ import TrendingUpOutlinedIcon from '@material-ui/icons/TrendingUpOutlined';
 import DataUsageOutlinedIcon from '@material-ui/icons/DataUsageOutlined';
 import BackupOutlinedIcon from '@material-ui/icons/BackupOutlined';
 import DashboardOutlinedIcon from '@material-ui/icons/DashboardOutlined';
+import { TrackChangesOutlined } from '@material-ui/icons';
 import logo from '../../Assets/trimble-white.png';
 import { NavLink as Link} from 'react-router-dom';
 import styled from 'styled-components';
@@ -24,6 +25,7 @@ const GuestSideNav = () => {
                     <StyledLink to= "/users"> <li className="side-nav-list-item"><AccountCircleOutlinedIcon />  Profile </li></StyledLink>
                     <li className="side-nav-list-item"><SettingsOutlinedIcon /> Settings</li>
                     <li className="side-nav-list-item"><HelpOutlineOutlinedIcon /> Help </li>
+                    <StyledLink to= "/externaltrace"> <li className="side-nav-list-item"><TrackChangesOutlined />  External Trace </li></StyledLink>
                 </ul>
         </div>
         </div>
