@@ -24,12 +24,7 @@ const ReportsTable = () => {
         },
       };
       const request = await axios.get(
-<<<<<<< HEAD
         "http://van-dev-tm4web2.tmwsystems.com:51841/tm/", config
-=======
-        "http://van-dev-tm4web2.tmwsystems.com:51841/tm/reports",
-        config
->>>>>>> 933da8e2537c8d7e5db942e5c73ae8a5cd926277
       );
       console.log(request);
       setReports(request.data.reports);
