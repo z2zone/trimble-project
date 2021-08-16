@@ -24,7 +24,12 @@ const ReportsTable = () => {
         },
       };
       const request = await axios.get(
+<<<<<<< HEAD
         "http://van-dev-tm4web2.tmwsystems.com:51841/tm/", config
+=======
+        "http://van-dev-tm4web2.tmwsystems.com:51841/tm/reports",
+        config
+>>>>>>> 933da8e2537c8d7e5db942e5c73ae8a5cd926277
       );
       console.log(request);
       setReports(request.data.reports);
@@ -41,7 +46,7 @@ const ReportsTable = () => {
       },
     };
     const request = await axios.get(
-      `http://localhost/tm/reports/${id}`,
+      `http://van-dev-tm4web2.tmwsystems.com:51841/tm/reports/${id}`,
       config
     );
     console.log(request);
@@ -110,13 +115,13 @@ const ReportsTable = () => {
                     key={row.reportId}
                     onClick={() =>
                       fetchById(row.reportId)
-                        .then((result) => setPdfData(result["reportData"]))
+                        .then((result) => setPdfData(`data:application/pdf;base64,${result.data.reportData}`))
                         .catch((error) => setPdfData(Pdf))
                     }
                   >
                     <StyledTableCell component="th" scope="row">
                       {/*row.reportDescription*/}
-                      <a href={pdfData} target="_blank">
+                      <a style={{textDecoration: "none"}} href = {pdfData} download={row.reportId}>
                         {row.reportDescription}
                       </a>
                     </StyledTableCell>
