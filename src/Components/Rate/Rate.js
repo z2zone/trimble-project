@@ -5,19 +5,33 @@ import { getToken } from "../../Utils/Common";
 class Rate extends Component {
   constructor(props) {
     super(props);
-    this.state = { start: "", destination: "", level: null, address: "", phoneNo: "" };
+    this.state = { start: "", destination: "", level: "", address: "", phoneNo: "" };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
-
+  
   handleSubmit(event) {
-    const { start, destination, level} = this.state;
+    const { start, destination, level } = this.state;
     event.preventDefault();
     alert(`
       start : ${start}
       destination : ${destination}
       level : ${level}
     `);
+    async function fetchData() {
+      const jwt = getToken();
+      let config = {
+        headers: {
+          Authorization: `Bearer ${jwt} `,
+        },
+      };
+      const request = await axios.get(
+        "http://van-dev-tm4web2.tmwsystems.com:51841/tm/", config
+      );
+      console.log(request);
+      return request;
+    }
+    fetchData();
   }
 
   handleChange(event) {
@@ -43,46 +57,46 @@ class Rate extends Component {
           <div class="content">
             <form onSubmit={this.handleSubmit}>
               <div>
-                <span>Start Zone</span>
+                <span className="red">* </span>Start Zone <br/>
                 <input
                   name="start"
-                  placeholder="Start Zone"
+                  placeholder="eg) VANCOUVER..."
                   value={this.state.start}
                   onChange={this.handleChange}
                 />
               </div>
               <div>
-                Destination
+              <span className="red">* </span>Destination <br/>
                 <input
                   name="destination"
-                  placeholder="Destination"
+                  placeholder="eg) KELOWNA..."
                   value={this.state.destination}
                   onChange={this.handleChange}
                 />
               </div>
               <div>
-                Service Level
+              <span className="red">* </span>Service Level <br/>
                 <input
                   name="level"
-                  placeholder="Service Level"
+                  placeholder="eg) REGULAR..."
                   value={this.state.level}
                   onChange={this.handleChange}
                 />
               </div>
               <div>
-                Address
+                <span>Address</span> <br/>
                 <input
                   name="address"
-                  placeholder="Address"
+                  placeholder="123 Main Street, New York, NY 10030"
                   value={this.state.address}
                   onChange={this.handleChange}
                 />
               </div>
               <div>
-                Phone Number
+                <span>Phone Number</span> <br/>
                 <input
                   name="phoneNo"
-                  placeholder="Phone No"
+                  placeholder="17786773773"
                   value={this.state.phoneNo}
                   onChange={this.handleChange}
                 />
