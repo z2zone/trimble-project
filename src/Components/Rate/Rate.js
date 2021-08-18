@@ -5,39 +5,38 @@ import { getToken } from "../../Utils/Common";
 class Rate extends Component {
   constructor(props) {
     super(props);
-    this.state = { start: "", destination: "", level: "", address: "", phoneNo: "" };
+    this.state = { start: "", destination: "", level: "", address: "", phoneNo: "", orders: null };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
   
   handleSubmit(event) {
-    const { start, destination, level } = this.state;
     event.preventDefault();
-    alert(`
-      start : ${start}
-      destination : ${destination}
-      level : ${level}
-    `);
-    async function fetchData() {
-      const jwt = getToken();
-      let config = {
-        headers: {
-          Authorization: `Bearer ${jwt} `,
-        },
-      };
-      const request = await axios.get(
-        "http://van-dev-tm4web2.tmwsystems.com:51841/tm/", config
-      );
-      console.log(request);
-      return request;
-    }
-    fetchData();
+    const jwt = getToken();
+    const { start, destination, level } = this.state;
+
+    let config = {
+      headers: {
+        Authorization: `Bearer 37eb595e371970789e094654aee51d39 `,
+      },
+    };
+    return axios.get(
+      `http://van-dev-tm4web2.tmwsystems.com:51841/tm/orders?type=Q&START_ZONE=${start}&END_ZONE=${destination}&SERVICE_LEVEL=${level}`,
+      config
+      ).then((request)=>{
+      this.setState({
+        orders : request.data.orders
+      });
+      setTimeout(()=> console.log(this.state), 3000);
+    });
+
   }
 
   handleChange(event) {
     this.setState({
       [event.target.name]: event.target.value,
     });
+    console.log(this.state);
   }
 
   render() {
@@ -102,7 +101,7 @@ class Rate extends Component {
                 />
               </div>
               <div>
-                <button className="rate-submit">Create Account</button>
+                <button className="rate-submit">Ask rate</button>
               </div>
             </form>
           </div>
