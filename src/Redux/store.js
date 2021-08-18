@@ -1,4 +1,4 @@
-import{ createStore,  compose} from 'redux';
+import{ createStore,  compose, applyMiddleware} from 'redux';
 import reducers from './reducers';
 
 let loginStatus=()=>{
@@ -12,7 +12,7 @@ let loginStatus=()=>{
     }
   }
   let loginDetail=()=>{
-    return sessionStorage.getItem('user')?sessionStorage.getItem('user'):null;
+    return sessionStorage.getItem('user')?sessionStorage.getItem('user'): null;
   }
   const initialStates = {
     auth: {

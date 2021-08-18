@@ -12,17 +12,11 @@ import {
   Container,
   ThemeProvider,
 } from "@material-ui/core";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import Checkbox from "@material-ui/core/Checkbox";
 import { makeStyles } from "@material-ui/core/styles";
-import Box from "@material-ui/core/Box";
-import { Breadcrumbs } from "@material-ui/core";
 import { NavLink, useHistory } from "react-router-dom";
 import styled from "styled-components";
-import CssBaseline from "@material-ui/core/CssBaseline";
 import { connect } from "react-redux";
 import { createTheme } from "@material-ui/core/styles";
-import purple from "@material-ui/core/colors/purple";
 import green from "@material-ui/core/colors/green";
 
 const Login = (props) => {
@@ -33,7 +27,8 @@ const Login = (props) => {
 
   let history = useHistory();
 
-  const handleLogin = () => {
+  const handleLogin = (event) => {
+    event.preventDefault();
     setError(null);
     setLoading(true);
     axios
@@ -44,6 +39,7 @@ const Login = (props) => {
       .then((response) => {
         setLoading(false);
         setUserSession(response.data.JWT, username);
+        props.setLogin(response.data.JWT)
         console.log("reponse >>> ", response);
         history.push("/");
       })
