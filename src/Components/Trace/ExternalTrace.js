@@ -5,6 +5,7 @@ import { IconButton } from '@material-ui/core';
 import SearchOutlinedIcon from '@material-ui/icons/SearchOutlined';
 import { TextField } from '@material-ui/core';
 import axios from 'axios';
+import Deets from './Deets';
 
 const ExternalTrace = () => {
     const[searchBy, setSearchBy] = useState("");
@@ -12,7 +13,7 @@ const ExternalTrace = () => {
         setSearchBy(event.target.value);
     };
     const [searchContent, setSearchContent] = useState('');
-    const [open, setOpen] = useState(false);
+    const [orderId, setOrderId] = useState(0);
 
     async function handleSearch (){
         if ( searchContent != null){
@@ -26,10 +27,44 @@ const ExternalTrace = () => {
             const request = await axios.get(`http://van-dev-tm4web2.tmwsystems.com:51841/tm/orders?$filter=billNumber eq ${searchContent}`,
             config
             )
-            alert(JSON.stringify(request.data.orders));
+            setOrderId(parseInt(request.data.orders[0].orderId));
+
             return request;
             
         }
+    }
+    const [map, setMap] = useState(false);
+    const handleMapOpen = () => {
+        setMap(true);
+      };
+    
+      const handleMapClose = () => {
+        setMap(false);
+      };
+
+    
+    
+    const [caller, setCaller] = useState({})
+    async function getCaller (id){
+        let config = {
+            headers: {
+              Authorization: `Bearer 37eb595e371970789e094654aee51d39 `,
+            },
+          };
+
+   
+        const request = await axios.get(`http://van-dev-tm4web2.tmwsystems.com:51841/tm/orders/${id}/caller`,
+        config
+        )
+        setCaller(request)
+        return request;
+
+    }
+    async function getShipper () {
+
+    }
+    async function getCosignee () {
+
     }
     return (
         <div>
@@ -71,7 +106,7 @@ const ExternalTrace = () => {
                                 <InputAdornment>
                                     <IconButton style={{position: "relative", left: "20px",
                                         top: "0px"}}>
-                                    <SearchOutlinedIcon  onClick = {handleSearch} />
+                                    <SearchOutlinedIcon  onClick = {() => {handleSearch(); setMap(true)}} />
                                     </IconButton>
                                  </InputAdornment>
                              )
@@ -81,6 +116,9 @@ const ExternalTrace = () => {
                     </FormGroup>
                 </Paper>
             </Container>
+            
+            <Deets deets = {map} handleClose = {handleMapClose} billNumber = {searchContent} />
+            
             
         </div>
     )

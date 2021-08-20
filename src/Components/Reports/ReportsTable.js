@@ -60,9 +60,9 @@ const ReportsTable = () => {
 
   const StyledTableRow = withStyles((theme) => ({
     root: {
-      "&:nth-of-type(odd)": {
-        backgroundColor: theme.palette.action.hover,
-      },
+     
+        backgroundColor: "white",
+      
     },
   }))(TableRow);
 
@@ -116,7 +116,7 @@ const ReportsTable = () => {
                   >
                     <StyledTableCell component="th" scope="row">
                       {/*row.reportDescription*/}
-                      <a style={{textDecoration: "none"}} href = {pdfData} download={row.reportId}>
+                      <a style={{textDecoration: "none", color: "black"}} href = {pdfData} download={row.reportId}>
                         {row.reportDescription}
                       </a>
                     </StyledTableCell>

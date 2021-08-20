@@ -22,6 +22,8 @@ import { Select } from '@material-ui/core';
 import { Grid } from '@material-ui/core';
 import { getToken } from '../../Utils/Common';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
+import Deets from './Deets';
+import ExternalTrace from './ExternalTrace';
 
 function customCheckbox(theme) {
     return {
@@ -262,63 +264,31 @@ const Trace = () => {
     const handleChange = (event) =>{
         setSearchBy(event.target.value);
     };
+
+    const [searchContent, setSearchContent] = useState('');
+    async function handleSearch (){
+      if ( searchContent != null){
+          let config = {
+              headers: {
+                Authorization: `Bearer 37eb595e371970789e094654aee51d39 `,
+              },
+            };
+  
+     
+          const request = await axios.get(`http://van-dev-tm4web2.tmwsystems.com:51841/tm/orders?$filter=billNumber eq ${searchContent}`,
+          config
+          )
+          alert(JSON.stringify(request.data.orders));
+          return request;
+          
+      }
+  }
     
     return (
         <>
         <div>
-           <Paper variant="outlined" elevation="3" style={{backgroundColor:"#fafafa"}}>
-            <Container maxWidth="sm" >
-            <FormGroup style={{flexDirection: "row", padding: "2rem"}}>
-            <Select
-                native
-                value={searchBy}
-                onChange={handleChange}
-                variant="outlined"
-                style={{height: "2.5rem", width: "10rem", backgroundColor: "white"}}
-                xs={3}
-            >
-                 <option >Bill Number</option>
-                 <option >Trip Number</option>
-                 <option >Trace Number</option>
-            </Select>
-            
-        
-        
-        <Select
-                native
-                value={searchBy}
-                onChange={handleChange}
-                variant="outlined"
-                style={{height: "2.5rem", width:"10rem", backgroundColor: "white"}}
-            >
-          <option >is exactly</option>
-          <option >starts with</option>
-          <option >contains</option>
-        </Select>
-       
-       
-       
-            <TextField 
-                variant="outlined"  
-                style= {{backgroundColor: 'white', height: "2.5rem"}}
-                size="small" 
-                InputProps={{
-                    endAdornment: (
-                      <InputAdornment>
-                        <IconButton style={{position: "relative", left: "20px",
-        top: "0px"}}>
-                          <SearchOutlinedIcon style={{color: "#838383"}} />
-                        </IconButton>
-                      </InputAdornment>
-                    )
-                  }}
-            
-            />
-            <Button >More <ArrowDropDownIcon /></Button>
-            </FormGroup>
-            </Container>
-
-            </Paper>
+          <ExternalTrace />
+           
        <div style={{ height: 800, width: '100%', overflow: "scroll", backgroundColor: 'white', marginTop: '10px'}}>
         <DataGrid
         filterModel={{
@@ -335,6 +305,8 @@ const Trace = () => {
     
        
      />
+
+     <Deets deets = {map} handleClose = {handleMapClose} billNumber = {searchContent} />
 
      
      </div>
