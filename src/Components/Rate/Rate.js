@@ -12,31 +12,55 @@ class Rate extends Component {
   
   handleSubmit(event) {
     event.preventDefault();
-    const jwt = getToken();
     const { start, destination, level } = this.state;
+    const jwt = getToken(); // this doesn't work here 
 
-    let config = {
+    return axios({
+      method: "POST",
+      url: "http://van-dev-tm4web2.tmwsystems.com:51841/tm/orders?type=Q",
       headers: {
-        Authorization: `Bearer 37eb595e371970789e094654aee51d39 `,
+        'Authorization': `Bearer 37eb595e371970789e094654aee51d39 `,
       },
-    };
-    return axios.get(
-      `http://van-dev-tm4web2.tmwsystems.com:51841/tm/orders?type=Q&START_ZONE=${start}&END_ZONE=${destination}&SERVICE_LEVEL=${level}`,
-      config
-      ).then((request)=>{
+      data: {
+        "orders": [
+          {
+              "startZone": start,
+              "endZone": destination,
+              "serviceLevel": level,
+              "pickUpBy": "",
+              "pickUpByEnd": "",
+              "deliverBy": "",
+              "deliverByEnd": "",
+              "caller": {
+                  "clientId": "12"
+              },
+              "details": [
+                  {
+                      "commodity": "FAK",
+                      "description": "red grey",
+                      "weight": 123,
+                      "weightUnits": "LBS",
+                      "pieces": 10,
+                      "piecesUnits": "LD"
+                  }
+              ]
+          }
+        ]
+      },
+    })
+    .then((request)=>{
       this.setState({
         orders : request.data.orders
       });
       setTimeout(()=> console.log(this.state), 3000);
     });
-
   }
 
   handleChange(event) {
     this.setState({
       [event.target.name]: event.target.value,
     });
-    console.log(this.state);
+    console.log(this.state.start);
   }
 
   render() {
