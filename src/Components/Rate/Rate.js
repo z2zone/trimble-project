@@ -1,15 +1,15 @@
 import React, { Component } from "react";
 import axios from "axios";
 import { getToken } from "../../Utils/Common";
+import NayaRate from "./NayaRate"
 
 class Rate extends Component {
   constructor(props) {
     super(props);
-    this.state = { start: "", destination: "", level: "", address: "", phoneNo: "", orders: null };
+    this.state = { start: "", destination: "", level: "", address: "", phoneNo: "", orders: null, open: false };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
-  
   handleSubmit(event) {
     event.preventDefault();
     const { start, destination, level } = this.state;
@@ -53,6 +53,7 @@ class Rate extends Component {
         orders : request.data.orders
       });
       setTimeout(()=> console.log(this.state), 3000);
+      this.setState({open: true})
     });
   }
 
@@ -125,7 +126,7 @@ class Rate extends Component {
                 />
               </div>
               <div>
-                <button className="rate-submit">Ask rate</button>
+                <button className="rate-submit" >Ask rate</button>
               </div>
             </form>
           </div>
@@ -168,6 +169,7 @@ class Rate extends Component {
             </p>
           </div>
         </section>
+        <NayaRate orders = {this.state.orders} open = {this.state.open}  />
       </div>
     );
   }
