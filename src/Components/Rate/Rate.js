@@ -19,7 +19,7 @@ class Rate extends Component {
       method: "POST",
       url: "http://van-dev-tm4web2.tmwsystems.com:51841/tm/orders?type=Q",
       headers: {
-        'Authorization': `Bearer 37eb595e371970789e094654aee51d39 `,
+        Authorization: `Bearer 37eb595e371970789e094654aee51d39 `,
       },
       data: {
         "orders": [
